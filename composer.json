@@ -11,8 +11,8 @@
   ],
   "extra": {
     "map": [
-      ["app/design/frontend/rational/default", "app/design/frontend/rational/default"],
-      ["skin/frontend/rational/default", "skin/frontend/rational/default"]
+      ["app/design/frontend/default/rational", "app/design/frontend/default/rational"],
+      ["skin/frontend/default/rational", "skin/frontend/default/rational"]
     ]
   }
 }
