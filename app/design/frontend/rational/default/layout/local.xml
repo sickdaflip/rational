@@ -1,0 +1,125 @@
+﻿<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<!-- Remove callouts and rarely used stuff -->
+		<remove name="right.poll"/>
+		<remove name="right.permanent.callout"/>
+		<remove name="left.permanent.callout"/>
+		<remove name="paypal.partner.right.logo"/>
+		<remove name="catalog.compare.sidebar"/>
+		<remove name="infobox"/>
+		<remove name="catalog.leftnav"/>
+		<remove name="catalogsearch.leftnav"/>
+		<remove name="top.links.wishlist"/>
+
+		<reference name="top.links">
+			<remove name="checkout_cart_link"/>
+			<action method="addLink" translate="label title" module="checkout">
+				<label>My Cart</label>
+				<url>/checkout/cart</url>
+				<title>My Cart</title>
+				<prepare/>
+				<urlParams/>
+				<position>100</position>
+				<liParams>class="fontface_icon"</liParams>
+				<aParams>
+					<class>top-link-cart</class>
+				</aParams>
+			</action>
+		</reference>
+
+		<!-- Remove Orders and Returns Link from Footer -->
+        <reference name="return_link">
+            <!-- Set the template file to an empty string to prevent output -->
+            <action method="setTemplate">
+                <template></template>
+            </action>
+        </reference>
+
+		<!-- add the local stylesheet -->
+		<reference name="head">
+			<action method="addCss"><stylesheet>css/local.css</stylesheet></action>
+			<action method="addCss"><stylesheet>css/jquery.fancybox-1.3.4.css</stylesheet></action>
+			<action method="addItem"><type>skin_js</type><name>js/jquery.fancybox-1.3.4.pack.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/jquery.easySlider1.7.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/floating-1.8.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/rational.js</name></action>
+			<action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>gte IE 8</if></action>
+		</reference>
+		
+		<!-- custom Top.Search -->
+		<remove name="top.search"/>
+		<reference name="header">
+			<!-- Suche in Header verschieben -->
+			<block type="core/template" name="top.search.custom" as="topSearch" template="catalogsearch/form.mini.phtml"/>
+			
+			<block type="cms/block" name="header_blocks" after="topSearch">
+				<action method="setBlockId"><block_id>header_blocks</block_id></action>
+			</block>
+		</reference>
+
+		<!-- Footer -->
+		<reference name="footer">
+			<block type="cms/block" name="b2b_hinweis" before="footer_links">
+				<action method="setBlockId"><block_id>b2b_hinweis</block_id></action>
+			</block>
+			<block type="cms/block" name="hotline" after="footer_links">
+				<action method="setBlockId"><block_id>hotline</block_id></action>
+			</block>
+		</reference>
+		
+		<!-- Warenkorb -->
+		<remove name="checkout.cart.shipping"/>
+	</default>
+	
+	<!-- Kundenkonto -->
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<action method="removeLinkByName"><name>recurring_profiles</name></action>
+			<action method="removeLinkByName"><name>billing_agreements</name></action>
+			<action method="removeLinkByName"><name>downloadable_products</name></action>
+        </reference>   
+    </customer_account>
+
+	<!-- add Custom Tabs to Modern Theme -->
+	<catalog_product_view>
+		<reference name="product.info">
+			<action method="unsetChild">
+				<name>info_tabs</name>
+			</action>
+			<block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs" template="catalog/product/view/tabs.phtml" >
+				<action method="addTab" translate="title" module="catalog">
+					<alias>description</alias>
+					<title>Details</title>
+					<block>catalog/product_view_description</block>
+					<template>catalog/product/view/description.phtml</template>
+				</action>
+				<action method="addTab" translate="title" module="catalog">
+					<alias>upsell_products</alias>
+					<title>Wir empfehlen auch</title>
+					<block>catalog/product_list_upsell</block>
+					<template>catalog/product/list/upsell.phtml</template>
+				</action>
+				<action method="addTab" translate="title" module="catalog">
+					<alias>video</alias>
+					<title>Videos</title>
+					<block>catalog/product_view_attributes</block>
+					<template>catalog/product/view/video.phtml</template>
+				</action>
+				<action method="addTab" translate="title" module="tag">
+					<alias>product.tags</alias>
+					<title>Product Tags</title>
+					<block>tag/product_list</block>
+					<template>tag/list.phtml</template>
+				</action>
+				<action method="addTab" translate="title" module="catalog">
+					<alias>additional</alias>
+					<title>Additional Information</title>
+					<block>catalog/product_view_attributes</block>
+					<template>catalog/product/view/attributes.phtml</template>
+				</action>
+			</block>
+		</reference>
+	</catalog_product_view>
+
+</layout>
