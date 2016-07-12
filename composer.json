@@ -1,0 +1,18 @@
+{
+  "name": "sickdaflip/rational",
+  "type": "magento-module",
+  "license": "MIT",
+  "description": "Magento 1.9.2. Theme",
+  "authors":[
+    {
+      "name":"SickDaFlip",
+      "email":"philippbreitsprecher@gmail.com"
+    }
+  ],
+  "extra": {
+    "map": [
+      ["app/design/frontend/rational/default", "app/design/frontend/rational/default"],
+      ["skin/frontend/rational/default", "skin/frontend/rational/default"]
+    ]
+  }
+}
