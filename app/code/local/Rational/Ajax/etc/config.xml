@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Rational_Ajax>
+            <version>1.0</version>
+        </Rational_Ajax>
+    </modules>
+    <frontend>
+        <routers>
+            <Rational_Ajax>
+                <use>standard</use>
+                <args>
+                    <module>Rational_Ajax</module>
+                    <frontName>ajax</frontName>
+                </args>
+            </Rational_Ajax>
+        </routers>
+    </frontend>
+</config>
